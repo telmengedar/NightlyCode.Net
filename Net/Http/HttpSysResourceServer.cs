@@ -4,7 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Reflection;
 
-namespace NightlyCode.Net.Server {
+namespace NightlyCode.Net.Http {
 
     /// <summary>
     /// serves resources for a http listener

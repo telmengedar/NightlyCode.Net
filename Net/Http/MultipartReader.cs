@@ -2,7 +2,7 @@
 using System.IO;
 using System.Text;
 
-namespace NightlyCode.Net {
+namespace NightlyCode.Net.Http {
 
     /// <summary>
     /// reads multipart attachements

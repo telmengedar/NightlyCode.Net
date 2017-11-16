@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 
-namespace NightlyCode.Net.Server {
+namespace NightlyCode.Net.Http {
 
     /// <summary>
     /// http server using .NET http listener

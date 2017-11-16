@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using NightlyCode.Net;
+using NightlyCode.Net.Http;
 using NUnit.Framework;
 
 namespace Net.Tests

@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using NightlyCode.Net.Browser;
 
-namespace NightlyCode.Net {
+namespace NightlyCode.Net.Http {
 
     /// <summary>
     /// helpers for http data

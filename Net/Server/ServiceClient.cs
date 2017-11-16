@@ -2,6 +2,7 @@
 using System.Net;
 using System.Text;
 using NightlyCode.Net.Browser;
+using NightlyCode.Net.Http;
 
 namespace NightlyCode.Net.Server
 {

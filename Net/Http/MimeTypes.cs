@@ -1,4 +1,4 @@
-﻿namespace NightlyCode.Net {
+﻿namespace NightlyCode.Net.Http {
 
     /// <summary>
     /// operations for mime types
