@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BCE23187-3997-4DCD-868B-117899E43313}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>NightlyCode.Net</RootNamespace>
+    <AssemblyName>NightlyCode.Net</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <DocumentationFile>bin\Debug\NightlyCode.Net.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <DocumentationFile>bin\Release\NightlyCode.Net.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignAssembly>false</SignAssembly>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AssemblyOriginatorKeyFile>
+    </AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="HtmlAgilityPack">
+      <HintPath>$(DevDir)\Extern\HtmlAgilityPack\Net45\HtmlAgilityPack.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Browser\BrowserResponse.cs" />
+    <Compile Include="Browser\BrowserSimulator.cs" />
+    <Compile Include="Browser\HttpAdapter.cs" />
+    <Compile Include="Browser\IBrowser.cs" />
+    <Compile Include="Browser\Parameter.cs" />
+    <Compile Include="Browser\SimulationResponse.cs" />
+    <Compile Include="Browser\SlimBrowser.cs" />
+    <Compile Include="Browser\WebRequestParameters.cs" />
+    <Compile Include="Http\HttpExtensions.cs" />
+    <Compile Include="Http\HttpClient.cs" />
+    <Compile Include="Http\HttpClientExtensions.cs" />
+    <Compile Include="Http\HttpServer.cs" />
+    <Compile Include="Http\Requests\HttpPostRequest.cs" />
+    <Compile Include="Http\Requests\HttpRequest.cs" />
+    <Compile Include="Http\Requests\MissingHeaderException.cs" />
+    <Compile Include="Http\Requests\RequestParser.cs" />
+    <Compile Include="Logger.cs" />
+    <Compile Include="Http\MimeTypes.cs" />
+    <Compile Include="Http\MultipartReader.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Server\HttpSysResourceServer.cs" />
+    <Compile Include="Server\HttpSysServer.cs" />
+    <Compile Include="Server\IRequestHandler.cs" />
+    <Compile Include="Server\IServiceHandler.cs" />
+    <Compile Include="Server\RequestManager.cs" />
+    <Compile Include="Server\ServiceClient.cs" />
+    <Compile Include="Server\ServiceServer.cs" />
+    <Compile Include="Server\ServiceClientException.cs" />
+    <Compile Include="Server\ServiceServerException.cs" />
+    <Compile Include="TCP\Connection.cs" />
+    <Compile Include="TCP\ConnectionInformation.cs" />
+    <Compile Include="TCP\ConnectionScope.cs" />
+    <Compile Include="TCP\ConnectionState.cs" />
+    <Compile Include="TCP\Native\AddressFamily.cs" />
+    <Compile Include="TCP\Native\MIB_TCPROW_OWNERPID.cs" />
+    <Compile Include="TCP\Native\MIB_TCPROW.cs" />
+    <Compile Include="TCP\Native\MIB_TCPTABLE_OWNERPID.cs" />
+    <Compile Include="TCP\Native\MIB_TCPTABLE.cs" />
+    <Compile Include="TCP\Native\Protocol.cs" />
+    <Compile Include="TCP\Native\TCP_TABLE_CLASS.cs" />
+    <Compile Include="TCP\Native\UDP_TABLE_CLASS.cs" />
+    <Compile Include="TCP\NetStat.cs" />
+    <Compile Include="TCP\ProxyPacket.cs" />
+    <Compile Include="TCP\TCPPacketClient.cs" />
+    <Compile Include="TCP\TCPProxy.cs" />
+    <Compile Include="TCP\TCPPacketServer.cs" />
+    <Compile Include="TCP\TcpServer.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <Target Name="AfterBuild">
+    <Copy SourceFiles="$(TargetPath)" DestinationFolder="$(DevDir)\Compiled\Library\" />
+    <Copy SourceFiles="$(DocumentationFile)" DestinationFolder="$(DevDir)\Compiled\Library\" />
+  </Target>
+</Project>
