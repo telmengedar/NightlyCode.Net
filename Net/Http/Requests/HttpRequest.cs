@@ -25,12 +25,10 @@ namespace NightlyCode.Net.Http.Requests {
         void DetermineResource(string resource) {
             int index = resource.IndexOf('?');
 
-            if (index > -1)
-            {
-                foreach (string parameter in resource.Substring(index + 1).Split('&'))
-                {
+            if(index > -1) {
+                foreach(string parameter in resource.Substring(index + 1).Split('&')) {
                     int valueindex = parameter.IndexOf('=');
-                    if (valueindex > -1)
+                    if(valueindex > -1)
                         parameters[parameter.Substring(0, valueindex)] = parameter.Substring(valueindex + 1);
                 }
                 Resource = resource.Substring(0, index);
@@ -48,8 +46,7 @@ namespace NightlyCode.Net.Http.Requests {
         /// </summary>
         /// <param name="name"></param>
         /// <param name="value"></param>
-        public void AddParameter(string name, string value)
-        {
+        public void AddParameter(string name, string value) {
             parameters[name] = value;
         }
 
@@ -58,11 +55,18 @@ namespace NightlyCode.Net.Http.Requests {
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        public string GetParameter(string name)
-        {
+        public string GetParameter(string name) {
             return parameters[name];
         }
 
+        /// <summary>
+        /// determines whether the request contains a parameter
+        /// </summary>
+        /// <param name="name">name of the parameter to check</param>
+        /// <returns>true when request contains a parameter with the specified name, false otherwise</returns>
+        public bool HasParameter(string name) {
+            return parameters.ContainsKey(name);
+        }
 
         /// <summary>
         /// access to headers
@@ -118,7 +122,10 @@ namespace NightlyCode.Net.Http.Requests {
         /// <summary>
         /// string representation of parameters
         /// </summary>
-        public string QueryString { get { return string.Join("&", parameters.Select(p => $"{p.Key}={p.Value}")); } }
+        public string QueryString
+        {
+            get { return string.Join("&", parameters.Select(p => $"{p.Key}={p.Value}")); }
+        }
 
         /// <summary>
         /// Returns a string that represents the current object.
@@ -127,16 +134,14 @@ namespace NightlyCode.Net.Http.Requests {
         /// A string that represents the current object.
         /// </returns>
         /// <filterpriority>2</filterpriority>
-        public override string ToString()
-        {
+        public override string ToString() {
             StringBuilder sb = new StringBuilder(Method).Append(" ");
-            if (!string.IsNullOrEmpty(Host))
+            if(!string.IsNullOrEmpty(Host))
                 sb.Append(Host);
             sb.Append(Resource);
-            if (parameters.Count > 0)
+            if(parameters.Count > 0)
                 sb.Append("?").Append(QueryString);
             return sb.ToString();
         }
-
     }
 }
