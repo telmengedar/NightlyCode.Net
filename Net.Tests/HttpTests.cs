@@ -13,12 +13,12 @@ namespace Net.Tests {
     public class HttpTests {
         static readonly HttpServer server = new HttpServer(IPAddress.Any, 50000);
 
-        [SetUp]
+        [OneTimeSetUp]
         public void Setup() {
             server.Start();
         }
 
-        [TearDown]
+        [OneTimeTearDown]
         public void Teardown() {
             server.Stop();
         }

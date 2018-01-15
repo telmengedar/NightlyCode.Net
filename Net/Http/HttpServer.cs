@@ -33,10 +33,17 @@ namespace NightlyCode.Net.Http {
         /// </summary>
         public void Start() {
             if(listening)
-                throw new Exception("Http Server already started");
+                return;
 
-            server.Start();
-            server.BeginAcceptTcpClient(ClientConnected, null);
+            try {
+                server.Start();
+                server.BeginAcceptTcpClient(ClientConnected, null);
+            }
+            catch (Exception e) {
+                Logger.Error(this, "Error starting http server", e);
+                return;
+            }
+
             listening = true;
             Logger.Info(this, "Http Server started");
         }
@@ -95,7 +102,7 @@ namespace NightlyCode.Net.Http {
         /// </summary>
         public void Stop() {
             if(!listening)
-                throw new InvalidOperationException("Server not running");
+                return;
 
             try {
                 server.Stop();
