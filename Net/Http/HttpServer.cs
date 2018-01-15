@@ -96,7 +96,14 @@ namespace NightlyCode.Net.Http {
         public void Stop() {
             if(!listening)
                 throw new InvalidOperationException("Server not running");
-            server.Stop();
+
+            try {
+                server.Stop();
+            }
+            catch(Exception e) {
+                Logger.Warning(this, "Error stopping server", e.ToString());
+            }
+            
             listening = false;
             Logger.Info(this, "Http Server stopped");
         }
@@ -115,7 +122,7 @@ namespace NightlyCode.Net.Http {
         /// Performs application-defined tasks associated with freeing, releasing, or resetting unmanaged resources.
         /// </summary>
         /// <filterpriority>2</filterpriority>
-        public void Dispose() {
+        void IDisposable.Dispose() {
             if(Running)
                 Stop();
         }
