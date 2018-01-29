@@ -173,5 +173,22 @@ namespace NightlyCode.Net.Http {
                 yield return new Parameter(parameters[i], parameters[i + 1]);
         }
 
+        /// <summary>
+        /// encodes data for usage in url string
+        /// </summary>
+        /// <param name="data">data to encode</param>
+        /// <returns>string usable in query strings</returns>
+        public static string URLEncode(string data) {
+            StringBuilder builder = new StringBuilder();
+            foreach(char character in data) {
+                if(char.IsLetterOrDigit(character))
+                    builder.Append(character);
+                else if(character == ' ')
+                    builder.Append('+');
+                else
+                    builder.Append($"%{((int)character).ToString("D2")}");
+            }
+            return builder.ToString();
+        }
     }
 }
