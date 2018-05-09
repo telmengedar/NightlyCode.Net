@@ -63,6 +63,7 @@
     <Compile Include="Browser\SimulationResponse.cs" />
     <Compile Include="Browser\SlimBrowser.cs" />
     <Compile Include="Browser\WebRequestParameters.cs" />
+    <Compile Include="Clients\NetworkClient.cs" />
     <Compile Include="Http\HttpExtensions.cs" />
     <Compile Include="Http\HttpClient.cs" />
     <Compile Include="Http\HttpClientExtensions.cs" />
@@ -102,6 +103,9 @@
     <Compile Include="TCP\TCPProxy.cs" />
     <Compile Include="TCP\TCPPacketServer.cs" />
     <Compile Include="TCP\TcpServer.cs" />
+    <Compile Include="UDP\UDPServer.cs" />
+    <Compile Include="Websockets\WebSocket.cs" />
+    <Compile Include="Websockets\WebSocketOpCode.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
