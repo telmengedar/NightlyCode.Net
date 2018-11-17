@@ -1,6 +1,7 @@
 ﻿using System;
 using System.IO;
 using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
 namespace NightlyCode.Net.Http.Requests {
 
@@ -16,7 +17,15 @@ namespace NightlyCode.Net.Http.Requests {
         /// <returns>parsed request</returns>
         public HttpRequest Parse(Stream datareader) {
             StreamReader reader = new StreamReader(datareader);
-            string line = reader.ReadLine();
+            reader.BaseStream.ReadTimeout = 100;
+
+            string line;
+            try {
+                line = reader.ReadLine();
+            }
+            catch(Exception) {
+                throw new MissingHeaderException("No header could be read from stream");
+            }
 
             if(string.IsNullOrEmpty(line))
                 throw new MissingHeaderException("No header could be read from stream");

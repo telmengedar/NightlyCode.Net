@@ -36,7 +36,7 @@ namespace NightlyCode.Net.Http {
                 return;
 
             try {
-                server.Start();
+                server.Start(20);
                 server.BeginAcceptTcpClient(ClientConnected, null);
             }
             catch (Exception e) {
@@ -49,11 +49,11 @@ namespace NightlyCode.Net.Http {
         }
 
         void ClientConnected(IAsyncResult ar) {
-            
+            server.BeginAcceptTcpClient(ClientConnected, null);
+
             TcpClient client;
             try {
                 client = server.EndAcceptTcpClient(ar);
-                server.BeginAcceptTcpClient(ClientConnected, null);
             }
             catch(ObjectDisposedException) {
                 return;
@@ -68,6 +68,9 @@ namespace NightlyCode.Net.Http {
             do {
                 try {
                     HttpRequest request = parser.Parse(client.GetStream());
+                    if(request == null)
+                        break;
+
                     if(request.HasHeader("Connection")) {
                         httpclient.KeepAlive = request.GetHeader("Connection").ToLower() == "keep-alive";
                     }
@@ -78,7 +81,7 @@ namespace NightlyCode.Net.Http {
                     break;
                 }
                 catch(IOException) {
-                    return;
+                    break;
                 }
                 catch(Exception e) {
                     Logger.Error(this, "Error parsing request", e);
